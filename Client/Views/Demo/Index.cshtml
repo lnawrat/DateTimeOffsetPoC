@@ -1,0 +1,46 @@
+﻿@model Client.Models.DemoVm
+
+<style>
+div {
+    display: table;
+}
+
+div div {
+    display: table-row;
+}
+
+div div div {
+    display: table-cell;
+    background: #EEE;
+    border: 1px solid #777;
+    padding: 1em;
+}
+</style>
+
+<h2>DateTimeOffset demo</h2>
+
+@Html.ActionLink("New from client -05", "Add", new { offset = -5 }) <br />
+@Html.ActionLink("New from client -02", "Add", new { offset = -2 }) <br />
+@Html.ActionLink("New from client UTC", "Add", new { offset = 0 }) <br />
+@Html.ActionLink("New from client 01", "Add", new { offset = 1 }) <br />
+@Html.ActionLink("New from client 05", "Add", new { offset = 5 })
+
+<h3>Stored data: </h3>
+<div>
+    <div>
+        <div></div>
+        <div><b>Name</b></div>
+        <div><b>Db date</b></div>
+        <div><b>Local time</b><br/> (.LocalDateTime.ToString("HH:mm:ss"))</div>
+    </div>
+
+    @foreach (var item in Model.Entries)
+    {
+        <div>
+            <div>@item.Id</div>
+            <div>@item.Name</div>
+            <div>@item.Date.ToString("HH:mm:ss.fff") <b>@item.Date.ToString("zz")</b></div>
+            <div>@item.Date.LocalDateTime.ToString("HH:mm:ss")</div>
+        </div>
+    }
+</div>
